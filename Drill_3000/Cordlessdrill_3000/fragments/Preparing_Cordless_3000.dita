@@ -12,6 +12,9 @@
         <cmd>Add the battery pack to your <ph
         conkeyref="term/Product_Name_Cordless_3000"/>.</cmd>
       </step>
+	  <step>
+        <cmd>Check the test build.</cmd>
+      </step>
     </steps>
   </taskbody>
 </task>
