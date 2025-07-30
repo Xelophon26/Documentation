@@ -1,0 +1,30 @@
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: always
+    - when: never
+
+stages:
+  - build
+
+variables:
+  DITA_ENGINE_REPO: "https://github.com/Xelophon26/DITA_Engine.git"
+  DITA_ENGINE_DIR: "dita-ot"
+  DITAMAP_FILE: "Drill_3000/Cordlessdrill_3000/binding/Cordless_3000_Manual.ditamap"   # Change this
+  OUTPUT_FORMAT: "pdf"
+  OUTPUT_DIR: "output"
+
+before_script:
+  - apt-get update && apt-get install -y openjdk-11-jre git
+  - git clone $DITA_ENGINE_REPO $DITA_ENGINE_DIR
+  - export DITA_HOME=$(pwd)/$DITA_ENGINE_DIR
+
+build_docs:
+  stage: build
+  script:
+    - echo "Building DITA content..."
+    - $DITA_HOME/bin/dita --input=$DITAMAP_FILE --format=$OUTPUT_FORMAT --output=$OUTPUT_DIR
+  artifacts:
+    paths:
+      - $OUTPUT_DIR
+    expire_in: 1 week
