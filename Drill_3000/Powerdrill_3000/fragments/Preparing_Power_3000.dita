@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN"
+"task.dtd">
+<task id="Preparing_Powerdrill_3000">
+  <title>Preparing <ph conkeyref="term/Product_Name_Power_3000"/></title>
+
+  <taskbody>
+    <steps>
+      <step>
+        <hazardstatement conkeyref="task/Electricution_hazard_Drill_3000"/>
+
+        <cmd>To prepare the <ph conkeyref="term/Product_Name_Power_3000"/>,
+        plug it in.</cmd>
+      </step>
+    </steps>
+  </taskbody>
+</task>

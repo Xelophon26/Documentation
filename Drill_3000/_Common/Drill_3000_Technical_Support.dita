@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN"
+"concept.dtd">
+<concept id="Technical_support">
+  <title>Technical support <ph conkeyref="ProdName/ProductName"/></title>
+
+  <conbody>
+    <p>For support on your product, reach out through mail or phone.</p>
+
+    <p product="Cordless_3000">The Cordless Drill 3000 comes with 2 years of
+    warranty.</p>
+
+    <p product="Power_3000">The Powerdrill 3000 comes with 4 years of
+    warranty.</p>
+  </conbody>
+</concept>

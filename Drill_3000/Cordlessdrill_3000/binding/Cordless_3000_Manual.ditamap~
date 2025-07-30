@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN"
+"map.dtd">
+<map>
+  <title>Cordless Drill 3000 Manual</title>
+
+  <keydef href="../../_Common/Task_reuse.dita" keys="task"/>
+
+  <keydef href="../../_Common/Term_reuse.dita" keys="term"/>
+
+  <topicref href="../../_Common/Drill_3000_Technical_Support.dita"/>
+
+  <topicref href="../fragments/Preparing_Cordless_3000.dita"/>
+</map>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN"
+"topic.dtd">
+<topic id="Term_Reuse">
+  <title>Term reuse pool</title>
+
+  <body>
+    <p><ph id="Product_Name_Cordless_3000">Cordless Drill 3000</ph></p>
+
+    <p><ph id="Product_Name_Power_3000">Power Drill 3000</ph></p>
+  </body>
+</topic>

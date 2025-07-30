@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN"
+"task.dtd">
+<task id="Preparing_Cordless_Drill_3000">
+  <title>Preparing <ph conkeyref="term/Product_Name_Cordless_3000"/></title>
+
+  <taskbody>
+    <steps>
+      <step>
+        <hazardstatement conkeyref="task/Electricution_hazard_Drill_3000"/>
+
+        <cmd>Add the battery pack to your <ph
+        conkeyref="term/Product_Name_Cordless_3000"/>.</cmd>
+      </step>
+    </steps>
+  </taskbody>
+</task>
