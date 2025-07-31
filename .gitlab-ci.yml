@@ -1,6 +1,10 @@
+image: eclipse-temurin:21-jdk
+
 workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: always
+    - if: $CI_PIPELINE_SOURCE == "web"
       when: always
     - when: never
 
@@ -18,6 +22,7 @@ before_script:
   - apt-get update && apt-get install -y openjdk-11-jre git
   - git clone $DITA_ENGINE_REPO $DITA_ENGINE_DIR
   - export DITA_HOME=$(pwd)/$DITA_ENGINE_DIR
+  - chmod +x $DITA_HOME/bin/dita
 
 build_docs:
   stage: build
