@@ -1,0 +1,21 @@
+name: Trigger GitLab Pipeline on PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  trigger-gitlab:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger GitLab Pipeline
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: https://gitlab.com/api/v4/projects/${{ secrets.GITLAB_PROJECT_ID }}/trigger/pipeline
+          method: POST
+          contentType: application/json
+          body: |
+            {
+              "token": "${{ secrets.GITLAB_TOKEN }}",
+              "ref": "main"
+            }
