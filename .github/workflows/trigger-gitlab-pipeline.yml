@@ -26,9 +26,9 @@ jobs:
           git config --global --unset credential.helper || true
           git credential-cache exit || true
 
-      - name: Trigger GitLab pipeline using curl
+      - name: Trigger GitLab pipeline (raw data)
         run: |
-          curl --show-error --verbose --request POST \
-            --data-urlencode "token=${{ secrets.GITLAB_TRIGGER_TOKEN }}" \
-            --data-urlencode "ref=${{ github.head_ref }}" \
+          curl --verbose --request POST \
+            --header "Content-Type: application/x-www-form-urlencoded" \
+            --data "token=${{ secrets.GITLAB_TRIGGER_TOKEN }}&ref=${{ github.head_ref }}" \
             https://gitlab.com/api/v4/projects/${{ secrets.GITLAB_PROJECT_ID }}/trigger/pipeline
