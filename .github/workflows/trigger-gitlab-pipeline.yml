@@ -23,7 +23,7 @@ jobs:
 
       - name: Trigger GitLab pipeline using curl
         run: |
-          curl --fail -X POST \
+          curl --show-error --verbose -X POST \
             -F token=${{ secrets.GITLAB_TRIGGER_TOKEN }} \
             -F ref=${{ github.head_ref }} \
             https://gitlab.com/api/v4/projects/${{ secrets.GITLAB_PROJECT_ID }}/trigger/pipeline
