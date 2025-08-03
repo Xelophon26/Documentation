@@ -17,7 +17,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "ci@example.com"
           git remote add gitlab https://${{ secrets.GITLAB_USERNAME }}:${{ secrets.GITLAB_PAT }}@gitlab.com/${{ secrets.GITLAB_PROJECT }}.git
-          git push -f gitlab HEAD:${{ github.head_ref }}
+          git push -f gitlab HEAD:refs/heads/${{ github.head_ref }}
 
       - name: Trigger GitLab pipeline
         uses: fjogeleit/http-request-action@v1
