@@ -14,7 +14,7 @@ jobs:
           url: https://gitlab.com/api/v4/projects/${{ secrets.GITLAB_PROJECT_ID }}/trigger/pipeline
           method: POST
           contentType: application/json
-          body: |
+          data: |
             {
               "token": "${{ secrets.GITLAB_TOKEN }}",
               "ref": "main"
