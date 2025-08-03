@@ -21,6 +21,11 @@ jobs:
           git remote add gitlab https://${{ secrets.GITLAB_USERNAME }}:${{ secrets.GITLAB_PAT }}@gitlab.com/${{ secrets.GITLAB_PROJECT }}.git
           git push -f gitlab HEAD:refs/heads/${{ github.head_ref }}
 
+      - name: Remove cached Git credentials
+        run: |
+          git config --global --unset credential.helper || true
+          git credential-cache exit || true
+
       - name: Trigger GitLab pipeline using curl
         run: |
           curl --show-error --verbose --request POST \
