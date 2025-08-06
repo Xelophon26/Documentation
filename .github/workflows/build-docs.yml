@@ -43,7 +43,7 @@ jobs:
           $DITA_HOME/bin/dita --input=$DITAMAP_FILE --format=$OUTPUT_FORMAT --output=$OUTPUT_DIR
 
       - name: Upload PDF
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: DITA PDF output
           path: ${{ env.OUTPUT_DIR }}
