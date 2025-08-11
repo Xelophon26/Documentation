@@ -55,11 +55,11 @@ jobs:
       # 4 Build the PDF using the DITA command-line tool
       - name: Build PDF
         run: |
-          export DITA_HOME=$(pwd)/$DITA_ENGINE_DIR  # Set DITA_HOME so the tool knows where it's installed
+          export DITA_HOME="$(pwd)/$DITA_ENGINE_DIR"
           $DITA_HOME/bin/dita \
-            -i=$DITAMAP_FILE \                 # The main DITA map file to build
-            -f=$OUTPUT_FORMAT \               # Output format (pdf)
-            -o=$OUTPUT_DIR                    # Output directory
+            -i "$DITAMAP_FILE" \
+            -f "$OUTPUT_FORMAT" \
+            -o "$OUTPUT_DIR"
 
       # 5 Upload the generated PDF(s) as build artifacts
       #     These will appear in the GitHub Actions run summary for download
