@@ -1,0 +1,70 @@
+# ------------------------------
+# GitHub Actions Workflow: Build DITA Docs
+# ------------------------------
+
+# Name shown in the GitHub Actions UI
+name: Build DITA Docs
+
+# ------------------------------
+# Define when the workflow runs
+# ------------------------------
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]  # Runs when a PR is created, updated, or reopened
+  push:
+    branches: [main]                        # Runs when code is pushed directly to the "main" branch
+  workflow_dispatch:                         # Allows manual run from the GitHub Actions UI
+  schedule:
+    - cron: "0 2 * * *"                      # Runs automatically at 2:00 AM UTC every day (nightly build)
+
+# ------------------------------
+# Define the jobs for the workflow
+# ------------------------------
+jobs:
+  build:                                     # Job name: "build"
+    runs-on: ubuntu-latest                   # Use the latest Ubuntu runner provided by GitHub
+
+    # Environment variables for easy reuse
+    env:
+      DITA_ENGINE_REPO: https://github.com/Xelophon26/DITA_Engine.git  # Repo containing DITA Open Toolkit
+      DITA_ENGINE_DIR: dita-ot                                         # Directory where DITA-OT will be cloned
+      DITAMAP_FILE: Drill_3000/Cordlessdrill_3000/binding/Cordless_3000_Manual.ditamap  # Your main DITA map file
+      OUTPUT_FORMAT: pdf                                                # Output format (pdf, html5, etc.)
+      OUTPUT_DIR: output                                                # Where the generated files will go
+
+    steps:
+      # 1. Checkout your GitHub repository so we can access the content
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # Fetch full history (needed for some tools that rely on Git history)
+
+      # 2. Install Java (DITA-OT requires Java to run)
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin   # Open-source Java distribution from Eclipse Temurin
+          java-version: 21        # Version of Java to install
+
+      # 3. Clone the DITA Open Toolkit from your separate repo
+      - name: Clone DITA-OT
+        run: |
+          git clone $DITA_ENGINE_REPO $DITA_ENGINE_DIR  # Clone into the specified directory
+          chmod +x $DITA_ENGINE_DIR/bin/dita            # Make sure the "dita" script is executable
+
+      # 4 Build the PDF using the DITA command-line tool
+      - name: Build PDF
+        run: |
+          export DITA_HOME=$(pwd)/$DITA_ENGINE_DIR  # Set DITA_HOME so the tool knows where it's installed
+          $DITA_HOME/bin/dita \
+            --input=$DITAMAP_FILE \                 # The main DITA map file to build
+            --format=$OUTPUT_FORMAT \               # Output format (pdf)
+            --output=$OUTPUT_DIR                    # Output directory
+
+      # 5 Upload the generated PDF(s) as build artifacts
+      #     These will appear in the GitHub Actions run summary for download
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: DITA PDF output          # Name of the artifact in the Actions UI
+          path: ${{ env.OUTPUT_DIR }}    # Directory containing the output files
