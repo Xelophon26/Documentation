@@ -57,9 +57,9 @@ jobs:
         run: |
           export DITA_HOME=$(pwd)/$DITA_ENGINE_DIR  # Set DITA_HOME so the tool knows where it's installed
           $DITA_HOME/bin/dita \
-            --input=$DITAMAP_FILE \                 # The main DITA map file to build
-            --format=$OUTPUT_FORMAT \               # Output format (pdf)
-            --output=$OUTPUT_DIR                    # Output directory
+            --i=$DITAMAP_FILE \                 # The main DITA map file to build
+            --f=$OUTPUT_FORMAT \               # Output format (pdf)
+            --o=$OUTPUT_DIR                    # Output directory
 
       # 5 Upload the generated PDF(s) as build artifacts
       #     These will appear in the GitHub Actions run summary for download
